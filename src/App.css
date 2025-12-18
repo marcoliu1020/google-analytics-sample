@@ -1,42 +1,250 @@
 #root {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 48px 24px 72px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #0b1021;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hero {
+  background: linear-gradient(135deg, #1f2a44, #131a30);
+  color: #f6f8ff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.25);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.pill {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #b6c2ff;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+
+.hero h1 {
+  margin: 12px 0 8px;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+}
+
+.lede {
+  margin: 0;
+  max-width: 780px;
+  color: #dfe6ff;
+}
+
+.cta-row {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
 }
 
 .card {
-  padding: 2em;
+  background: #f5f7fb;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1);
 }
 
-.read-the-docs {
-  color: #888;
+.card.wide {
+  grid-column: span 2;
+}
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  color: #475569;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.field select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  font-size: 15px;
+}
+
+.stack {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  background: #0f172a;
+  color: white;
+  padding: 12px 14px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+button.primary {
+  background: linear-gradient(135deg, #2563eb, #6366f1);
+  border: none;
+}
+
+button.ghost {
+  background: transparent;
+  color: #f6f8ff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hint {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.state {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+  color: #111827;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+  background: #cbd5e1;
+  margin-right: 4px;
+}
+
+.dot.on {
+  background: #22c55e;
+}
+
+.dot.off {
+  background: #cbd5e1;
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.plan {
+  text-align: left;
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+}
+
+.plan.active {
+  border-color: #2563eb;
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.18);
+}
+
+.plan-name {
+  font-weight: 700;
+}
+
+.plan-price {
+  font-size: 18px;
+  margin: 6px 0 2px;
+}
+
+.plan-desc {
+  color: #475569;
+  font-size: 14px;
+}
+
+.features {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.feature {
+  background: #0f172a;
+  border: 1px solid #0f172a;
+  color: white;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  color: #e2e8f0;
+}
+
+.panel h3 {
+  margin-top: 0;
+  color: #f8fafc;
+}
+
+.panel ol {
+  margin: 0;
+  padding-left: 18px;
+  color: #cbd5e1;
+}
+
+@media (max-width: 720px) {
+  #root {
+    padding: 32px 16px 48px;
+  }
+
+  .card.wide {
+    grid-column: span 1;
+  }
 }
