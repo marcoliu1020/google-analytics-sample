@@ -21,14 +21,14 @@ const createGtagStub = () => {
 export const initAnalytics = () => {
   if (initialized) return
 
-  createGtagStub()
-
   if (!measurementId) {
     console.warn(
       '[ga] VITE_GA_MEASUREMENT_ID not set; events will only log to the console.',
     )
     return
   }
+
+  createGtagStub()
 
   const script = document.createElement('script')
   script.async = true
@@ -49,6 +49,7 @@ export const trackEvent = (
   }
 
   if (!measurementId) {
+    console.warn('could not send event to GA, missing measurement ID')
     console.info('[ga-stub]', name, params)
     return
   }
