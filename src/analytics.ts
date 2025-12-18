@@ -26,6 +26,8 @@ export const initAnalytics = () => {
       '[ga] VITE_GA_MEASUREMENT_ID not set; events will only log to the console.',
     )
     return
+  } else {
+    console.log(`[ga] initializing with measurement ID: ${measurementId}`) // debug
   }
 
   createGtagStub()
