@@ -8,6 +8,13 @@
 3) 啟動：`npm run dev`，在瀏覽器開啟提示的 localhost。  
 4) 驗證：在 GA DebugView 觀察事件是否正確送出。未填 measurement id 時，事件會以 `[ga-stub]` 形式印在 console 方便離線測試。
 
+## 部署到 GitHub Pages（main）
+1) 將專案推到 GitHub，保持 main 為預設分支。  
+2) （可選）在 Settings → Secrets → Actions 新增 `VITE_GA_MEASUREMENT_ID`，供 CI build 時注入。  
+3) 推送到 main 或手動觸發 workflow，`.github/workflows/deploy.yml` 會執行 `npm ci && npm run build` 並部署到 Pages。  
+4) 首次部署後，於 Settings → Pages 確認 Source 已設為「GitHub Actions」。  
+5) 網址為 `https://<你的帳號>.github.io/<repo>/`，Vite 會自動使用 repo 子路徑當作 base。  
+
 ## 事件表
 | 事件名稱 | 觸發時機 | 主要參數 |
 | --- | --- | --- |
