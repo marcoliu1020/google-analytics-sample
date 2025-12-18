@@ -1,11 +1,15 @@
+import React, { useEffect } from 'react'
+import { createPortal } from 'react-dom'
+
 declare global {
   interface Window {
-    dataLayer?: unknown[]
+    dataLayer?: Array<unknown | IArguments>
     gtag?: (...args: unknown[]) => void
   }
 }
 
-const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
+const measurementId =
+  import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-D94ZSJ9JEG' // default to demo id
 
 let initialized = false
 
@@ -14,32 +18,43 @@ const createGtagStub = () => {
   window.gtag =
     window.gtag ||
     function gtag(...args: unknown[]) {
+      // keep parity with the official snippet: push the arguments object
       window.dataLayer?.push(args)
     }
 }
 
-export const initAnalytics = () => {
-  if (initialized) return
+const useAnalyticsInit = () => {
+  useEffect(() => {
+    if (initialized) return
 
-  if (!measurementId) {
-    console.warn(
-      '[ga] VITE_GA_MEASUREMENT_ID not set; events will only log to the console.',
-    )
-    return
-  } else {
-    console.log(`[ga] initializing with measurement ID: ${measurementId}`) // debug
-  }
+    if (!measurementId) {
+      console.warn(
+        '[ga] VITE_GA_MEASUREMENT_ID not set; events will only log to the console.',
+      )
+      return
+    } else {
+      console.log(`[ga] initializing with measurement ID: ${measurementId}`) // debug
+    }
 
-  createGtagStub()
+    createGtagStub()
+    window.gtag?.('js', new Date())
+    window.gtag?.('config', measurementId)
+    initialized = true
+  }, [])
+}
 
-  const script = document.createElement('script')
-  script.async = true
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
-  document.head.appendChild(script)
+export const AnalyticsScript = () => {
+  useAnalyticsInit()
 
-  window.gtag?.('js', new Date())
-  window.gtag?.('config', measurementId)
-  initialized = true
+  if (!measurementId) return null
+
+  return createPortal(
+    React.createElement('script', {
+      async: true,
+      src: `https://www.googletagmanager.com/gtag/js?id=${measurementId}`,
+    }),
+    document.head,
+  )
 }
 
 export const trackEvent = (

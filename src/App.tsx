@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { initAnalytics, trackEvent } from './analytics'
+import { useState } from 'react'
+import { trackEvent } from './analytics'
 import './App.css'
 
 type PlanId = 'free' | 'pro' | 'enterprise'
@@ -28,10 +28,6 @@ function App() {
   const [signedUp, setSignedUp] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [checkoutStarted, setCheckoutStarted] = useState(false)
-
-  useEffect(() => {
-    initAnalytics()
-  }, [])
 
   const handleViewPricing = () => {
     trackEvent('view_pricing', { plan_id: selectedPlan })
